@@ -23,12 +23,16 @@ export class ProductsController {
   }
 
   @Get('/:id')
-  public getById(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.productsService.getById(id);
+  getById(@Param('id', new ParseUUIDPipe()) id: string) {
+    const prod = this.productsService.getById(id);
+    if (!prod) throw new NotFoundException('Product not found');
+    return prod;
   }
 
   @Delete('/:id')
   public deleteById(@Param('id', new ParseUUIDPipe()) id: string) {
+    if (!this.productsService.getById(id))
+      throw new NotFoundException('Product not found');
     this.productsService.deleteById(id);
     return { success: true };
   }
