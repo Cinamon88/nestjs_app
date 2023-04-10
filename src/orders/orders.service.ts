@@ -32,6 +32,9 @@ export class OrdersService {
           product: {
             connect: { id: productId },
           },
+          client: {
+            connect: { id: clientId },
+          },
         },
       });
     } catch (error) {
@@ -51,6 +54,9 @@ export class OrdersService {
         ...otherData,
         product: {
           connect: { id: productId },
+        },
+        client: {
+          connect: { id: clientId },
         },
       },
     });
