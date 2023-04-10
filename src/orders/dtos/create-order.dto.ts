@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsString, Length, Min } from 'class-validator';
+import { IsNotEmpty, IsString, Length, Min, IsUUID } from 'class-validator';
 
 export class CreateOrderDTO {
   @IsNotEmpty()
   @IsString()
+  @IsUUID()
   @Min(0)
   productId: string;
 
