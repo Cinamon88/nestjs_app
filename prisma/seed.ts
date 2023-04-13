@@ -97,7 +97,7 @@ async function seed() {
     );
 
     await Promise.all(
-        getOrders().map(({ productId, clientId, ...orderData }) => {
+        getOrders().map(({ productId, client, ...orderData }) => {
             return db.order.create({
                 data: {
                     ...orderData,
@@ -105,7 +105,7 @@ async function seed() {
                         connect: { id: productId },
                     },
                     client: {
-                        connect: { id: clientId },
+                        connect: { id: client },
                     },
                 },
             });
