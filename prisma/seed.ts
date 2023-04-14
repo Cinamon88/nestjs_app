@@ -85,12 +85,6 @@ function getClients() {
 
 async function seed() {
     await Promise.all(
-        getClients().map((client) => {
-            return db.client.create({ data: client });
-        }),
-    );
-
-    await Promise.all(
         getProducts().map((product) => {
             return db.product.create({ data: product });
         }),
@@ -109,6 +103,12 @@ async function seed() {
                     },
                 },
             });
+        }),
+    );
+
+    await Promise.all(
+        getClients().map((client) => {
+            return db.client.create({ data: client });
         }),
     );
 }
